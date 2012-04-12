@@ -1,0 +1,14 @@
+
+code {
+	background-color: #E4E4E4;
+	border: 1px solid #BBBBBB;
+	white-space: nowrap;
+}
+
+pre {
+	/*border: 1px solid #BBBBBB;
+	background-color: #E4E4E4;*/
+	margin-left: 2em;
+	margin-right: 2em;
+	padding: 5px;
+}
