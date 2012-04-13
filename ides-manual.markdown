@@ -261,7 +261,7 @@ Implicit conversions are allowed on integral types, provided no data is lost or 
 
 Implicit conversions are always allowed from integral types to floating point types.
 
-This flow chart shows all explicit conversions permitted in the language.
+This flow chart shows all implicit conversions permitted on numeric types.
 
 ![Implicit Conversions](/images/ImplicitConversions.png "Implicit Conversions")
 
