@@ -43,7 +43,7 @@ Other built-in types include:
 
 Ides also supports pointer types. Ides pointers work in the same way as they do in C. The syntax for a pointer type to, for example, an `int32` follows the C syntax convention: `int32*`. It is valid to create pointers to built-in types, struct types or other pointer types. Pointers to class types are not supported.
 
-Note that there is no `const` keyword, and that Ides makes no attempt at ensuring [const correctness]("http://en.wikipedia.org/wiki/Const-correctness" Const-correctness). When using pointers, it is the responsibility of the developer to prevent writing to read-only memory.
+Note that there is no `const` keyword, and that Ides makes no attempt at ensuring [const correctness](http://en.wikipedia.org/wiki/Const-correctness). When using pointers, it is the responsibility of the developer to prevent writing to read-only memory.
 
 Literals
 --------
@@ -168,7 +168,46 @@ Prefix operators always take precedence over infix operators. For example:
 Postfix operators always take precedence over prefix operators. For example:
 
     !a(); // Evaluated as !(a());
+Arrays
+------
+Arrays are fixed-size blocks of memory containing a sequence of elements. Ides arrays, like C arrays, are internally a simple block of memory with a sequence of homogeneous elements. However, when an array is created in Ides, the compiler automatically adds certain metadata and runtime checks to protect against [buffer overflows](http://en.wikipedia.org/wiki/Buffer_overflow). The consequence of these runtime checks are an additional 8 bytes of memory, and a single branch instruction during array reads and writes.
 
+### Language Usage ###
+#### Creating Arrays ####
+##### Value Sequence #####
+Arrays can be created from a fixed sequence of values:
+
+    var x = [1, 2, 3]; // Creates an array of three int32
+
+##### Buffer Size #####
+Arrays can also be created with a length:
+
+    var x: int32[512]; // Array of 512 int32
+
+##### Array Length #####
+Arrays can be queried for their length:
+
+    x.length; // returns a uint64 describing the array's length.
+
+##### Accessing values #####
+Writing to and reading from arrays is straightforward:
+
+    var x = [1, 2, 3];
+    x[0] = someValue; // Write someValue into array position 0
+    someValue = x[0]; // Read from array position 0
+    someValue = x[4]; // Exception thrown! Array out of bounds.
+
+##### Compatibility with C Arrays #####
+It is easy to get a raw pointer to the data held in an array:
+
+    var x = [1, 2, 3];
+    var ptr = x.cast<int32*>; // Returns a C pointer to the first element of the array.
+
+### Data Layout ###
+TODO: Describe the per-byte data layout of arrays
+
+### Performance Considerations ###
+In the overwhelming majority of cases, a single branch instruction does not result in a measurable performance penalty. However, there may be cases where runtime bounds checking of arrays is becoming a bottleneck. If this is an issue, the {{{--no-array-bounds-checks}}} compiler flag can be set. This will remove runtime bounds checks from the code being compiled, meaning it is the responsibility of the developer to check array bounds.
 
 Structs
 -------
@@ -203,10 +242,33 @@ The caller can index the tuple:
 
 Note that 1-tuples are not supported. `(val)` is a simple parenthetical grouping.
 
+### Vectorized Structs ###
+TODO: Explain struct vectorization for multidimensional data (Point/Vector/Matrix).
+
+Classes
+-------
+TODO: Explain classes, reference types, type system.
+
 Casting
 -------
 ### Implicit Conversions ###
+
+#### Implicit Conversions with Numeric Types ####
+Implicit conversions are allowed on integral types, provided no data is lost or reinterpreted. This means that there are no implicit conversions between signed and unsigned integers of the same size, and there are no implicit conversions from any signed integer to any unsigned integer.
+
+Implicit conversions are always allowed from integral types to floating point types.
+
+This flow chart shows all explicit conversions permitted in the language.
+
 ![Implicit Conversions](/images/ImplicitConversions.png "Implicit Conversions")
+
+Implicit conversions are not allowed on pointer types.
+
+#### Implicit Conversions with String Types ####
+TODO: Should we allow implicit conversions between Ides strings, C strings, WC/LC strings? String class objects? UTF-8/16/32?
+
+#### Implicit Conversions with Reference Types ####
+Implicit conversions are permitted for reference types provided that the destination type is a supertype of the source type.
 
 ### Explicit Casts ###
 Ides allows a few implicit casts.
@@ -216,6 +278,6 @@ Ides allows a few implicit casts.
     var y = x.cast<SomeType>;
 
 
-### Cast Functions ###
-How to define new valid casts.
+#### Cast Functions ####
+TODO: How to define new valid casts.
 
