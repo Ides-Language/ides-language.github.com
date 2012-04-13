@@ -5,17 +5,27 @@
 		<link rel="stylesheet" href="css/ides.css" media="print" />
 	</head>
 	<body>
-		<div style="padding-left: auto; padding-right: auto;">
-			<a href="/"><img src="/images/logo.png" alt="Ides" /></a>
+		<div id="menu">
+			<div id="logo">
+				<a href="/"><img src="/images/logo.png" alt="Ides" /></a>
+			</div>
+			<div id="navigation">
+				<ul id="navigation">
+					<li><a href="/">Home</a></li>
+					<li><a href="/manual.html">Manual</a></li>
+				</ul>
+			</div>
 		</div>
-		<h1>{{page.title}}</h1>
-		{{content}}
-		<div style="text-align: center;">
-			<a href="/">Home</a>
-			&middot;
-			<a href="https://github.com/Ides-Language/Ides">Project Page</a>
-			&middot;
-			<a href="/about.html">About</a>
+		<div id="content">
+			<h1>{{page.title}}</h1>
+			{{content}}
+			<div style="text-align: center;">
+				<a href="/">Home</a>
+				&middot;
+				<a href="https://github.com/Ides-Language/Ides">Project Page</a>
+				&middot;
+				<a href="/about.html">About</a>
+			</div>
 		</div>
 	</body>
 </html>

@@ -13,5 +13,33 @@ pre {
 	padding: 5px;
 }
 
-.maruku_toc {
+body {
 }
+
+#content {
+	margin-left: 276px;
+	overflow: none;
+}
+
+#logo {
+	padding-right: 10px;
+	margin-bottom: 30px;
+}
+
+#menu {
+	background: #FFFFFF;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	padding: 10px;
+	float: left;
+	height: 100%;
+	border-right: 1px solid #BBBBBB;
+}
+
+#navigation {
+	list-style-type: upper-roman;
+	padding-left: 15px;
+}
+
+
