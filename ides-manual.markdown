@@ -99,6 +99,7 @@ Arguments to a function are specified as they are in the body of a function:
     }
 
 Functions can be declared `public`, `private`, `internal` or `extern`. Functions that are declared `extern` may not have a body.
+
     extern def OtherLibraryFunction(); // Extern method with no return type.
     
     public def MyFunction(var argA: int32, var argB = 0) => int32 { // MyFunction will be exported from the module.
@@ -107,25 +108,11 @@ Functions can be declared `public`, `private`, `internal` or `extern`. Functions
 ### Function Names ###
 Functions have special privileges when it comes to identifiers. In addition to the standard alphanumeric identifier rule, which we'll call 'identifier characters' `[a-zA-Z_][a-zA-Z0-9_]*` function identifiers may also conform to a separate class of characters, called 'operator characters.' A function identifier may consist entirely of identifier characters, or entirely of operator characters, but not a mix of the two. 
 
-A comprehensive list of operator characters:
+A comprehensive list of operator characters: `%` `+` `-` `/` `:` `<` `>` `\` `^` `|` `#` `!` `+` `~` `&` `?` `=`.
 
-*   `%`
-*   `+`
-*   `-`
-*   `/` - Note that a function identifier may not contain `//` or `/*`, as that begins a comment.
-*   `:`
-*   `<`
-*   `>`
-*   `\`
-*   `^`
-*   `|`
-*   `#`
-*   `!`
-*   `*`
-*   `~`
-*   `&`
-*   `?`
-*   `=` - A special case exists for the `=` symbol. `=` alone is not a valid function name.
+Note:
++ A special case exists for the `=` symbol. `=` alone is not a valid function name.
++ A function identifier may not contain `//` or `/*`, as that begins a comment.
 
 ### Operators ###
 In addition to normal functions, a function can also be used as a prefix or infix operator, by appending the `prefix` or `infix` keyword to the definition. For example, if a function is defined as:
