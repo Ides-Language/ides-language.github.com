@@ -210,7 +210,7 @@ It is easy to get a raw pointer to the data held in an array:
 TODO: Describe the per-byte data layout of arrays
 
 ### Performance Considerations ###
-In the overwhelming majority of cases, a single branch instruction does not result in a measurable performance penalty. However, there may be cases where runtime bounds checking of arrays is becoming a bottleneck. If this is an issue, the {{{--no-array-bounds-checks}}} compiler flag can be set. This will remove runtime bounds checks from the code being compiled, meaning it is the responsibility of the developer to check array bounds.
+In the overwhelming majority of cases, a single branch instruction does not result in a measurable performance penalty. However, there may be cases where runtime bounds checking of arrays is becoming a bottleneck. If this is an issue, the `--no-array-bounds-checks` compiler flag can be set. This will remove runtime bounds checks from the code being compiled, meaning it is the responsibility of the developer to check array bounds.
 
 Structs
 -------
