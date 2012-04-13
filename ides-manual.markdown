@@ -205,6 +205,10 @@ Note that 1-tuples are not supported. `(val)` is a simple parenthetical grouping
 
 Casting
 -------
+### Implicit Conversions ###
+![Implicit Conversions](/images/ImplicitConversions.png "Implicit Conversions")
+
+### Explicit Casts ###
 Ides allows a few implicit casts.
 
     // y is of type SomeType, which was a cast from an instance of x.
