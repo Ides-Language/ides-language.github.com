@@ -3,10 +3,13 @@ layout: default
 title: Ides Manual
 permalink: manual.html
 ---
+* Table of contents goes here.
+{:toc}
+
 Ides is a strongly typed general-purpose programming language, drawing heavily from successful languages such as C, C# and Scala. Ides adopts a multi-paradigm approach to its language constructs, including functional programming elements such as lambdas and closures, and object oriented concepts like classes and polymorphism.
 
-Standard Libraries
-==================
+Compiler Options
+================
 
 This document will describe all of the syntax features that are defined. However, Ides is targeted toward many different audiences, including developers for systems with limited resources. The language is intended to be usable as a systems language. As a result, some language features may be disabled, depending on the availability of certain standard libraries. Class types, for example, require the presence of the garbage collection library.
 
@@ -280,4 +283,24 @@ Ides allows a few implicit casts.
 
 #### Cast Functions ####
 TODO: How to define new valid casts.
+
+Standard Libraries
+==================
+TODO: Describe the standard libraries that ship with Ides.
+
+Math
+----
+TODO: Math functions, vector functions, matrix functions
+
+Garbage Collection
+------------------
+TODO: Describe GC and classes.
+
+Collections
+-----------
+TODO: Describe collections library.
+
+Compiler
+--------
+TODO: Describe interfaces for hosting an Ides compiler/runtime
 
