@@ -1,8 +1,13 @@
-
 code {
 	background-color: #E4E4E4;
 	border: 1px solid #BBBBBB;
 	white-space: nowrap;
+}
+
+pre code {
+	border: none;
+	background-color: transparent;
+	white-space: pre;
 }
 
 pre {
@@ -11,6 +16,8 @@ pre {
 	margin-left: 2em;
 	margin-right: 2em;
 	padding: 5px;
+	background-color: #E4E4E4;
+	border: 1px solid #BBBBBB;
 }
 
 body {
