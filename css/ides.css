@@ -7,7 +7,7 @@ code {
 pre code {
 	border: none;
 	background-color: transparent;
-	white-space: pre-line;
+	white-space: pre-wrap;
 }
 
 pre {
