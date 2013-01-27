@@ -1,8 +1,12 @@
 <html>
 	<head>
-		<title>{{ page.title }}{% if page.title %} | {% endif %}Ides Language</title>
+		<title>{{ page.title }}{% if page.title %} | {% endif %}{{site.name}}</title>
 		<link rel="stylesheet" href="/css/ides.css" media="screen" />
 		<link rel="stylesheet" href="/css/ides.css" media="print" />
+
+		<link type="application/atom+xml" rel="alternate" href="/atom.xml" title="{{site.name}} ATOM feed" />
+		<link type="application/rss+xml" rel="alternate" href="/rss.xml" title="{{site.name}} RSS feed" />
+
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', 'UA-26832023-2']);
@@ -19,7 +23,7 @@
 	<body>
 		<div id="menu">
 			<div id="logo">
-				<a href="/"><img src="/images/logo.png" alt="Ides" /></a>
+				<a href="/"><img src="/images/logo.png" alt="{{site.name}}" /></a>
 			</div>
 			<div id="navigation">
 				<h3>Navigation</h3>

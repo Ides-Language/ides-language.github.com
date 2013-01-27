@@ -2,3 +2,5 @@ safe: true
 pygments: true
 paginate: 3
 disqus_shortname: ideslanguage
+url: http://ides-lang.com
+name: Ides Language
