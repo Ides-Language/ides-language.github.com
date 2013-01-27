@@ -1,0 +1,43 @@
+---
+layout: default
+title: Ides Language
+permalink: index.html
+comments: false
+---
+
+<div>
+	When there are actual releases and stuff, they'll go here.
+</div>
+
+{% for post in paginator.posts %}
+
+<div class="post">
+	<h2 class="post_title"><a href="{{post.url}}">{{ post.title }}</a></h2>
+	<div class="post_content" style="{{ post.custom_css }}">
+		{{ post.content }}
+	</div>
+	<div class="post_footer">Posted on {{ post.date | date_to_long_string }}{% if post.author %} by {{post.author}}{% endif %}</div>
+</div>
+
+{% endfor %}
+
+{% if paginator.previous_page or paginator.next_page %}
+<div>
+	{% if paginator.previous_page %}
+	<a href="/page{{paginator.previous_page}}" class="previous">Previous</a>
+	{% else %}
+	<span class="previous">Previous</span>
+	{% endif %}
+
+	<span class="page_number">Page: {{paginator.page}} of {{paginator.total_pages}}</span>
+
+	{% if paginator.next_page %}
+	<a href="/page{{paginator.next_page}}" class="next">Next</a>
+	{% else %}
+	<span class="next">Next</span>
+	{% endif %}
+
+</div>
+{% endif %}
+
+

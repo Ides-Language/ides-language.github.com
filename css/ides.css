@@ -24,9 +24,32 @@ pre {
 body {
 }
 
+.post {
+	border-top: 1px solid #BBBBBB;
+	padding: 5px;
+	margin-top: 5px;
+}
+
+.post_title {
+	margin-top: 0px;
+}
+
+.post_footer {
+	font-size: 80%;
+	color: #444444;
+}
+
+#post_body {
+	border-bottom: 1px solid #BBBBBB;
+}
+
 #content {
 	margin-left: 276px;
 	overflow: none;
+}
+
+#comments {
+	padding: 10px;
 }
 
 #logo {
@@ -45,9 +68,9 @@ body {
 	border-right: 1px solid #BBBBBB;
 }
 
-#navigation {
+ul {
 	list-style-type: upper-roman;
-	padding-left: 15px;
+	padding-left: 25px;
 }
 
 
