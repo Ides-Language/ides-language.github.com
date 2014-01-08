@@ -44,7 +44,7 @@ permalink: grammar.html
 
     postfix_expr = primary_expr [ '(' expr_list ')'      (* value arguments *)
                                 | '[' expr_list ']'      (* type arguments *)
-                                | '{' compound_expr '}' (* block expression *)
+                                | '{' compound_expr '}'  (* block expression *)
                                 | '.' identifier
                                 | "..."
                                 ] ;
@@ -54,7 +54,7 @@ permalink: grammar.html
                  | PLACEHOLDER
                  | val_decl
                  | '(' expr_list ')'      (* tuple value *)
-                 | '{' compound_expr '}' (* lexical scope *)
+                 | '{' compound_expr '}'  (* lexical scope *)
                  | partial_function
                  ;
 
@@ -92,7 +92,8 @@ permalink: grammar.html
 
     (* terminal symbols *)
 
-    OPERATOR = "[!\#\%\^&\*\-\+/\\<>\|?][=:!\#\%\^&\*\-\+/\\<>\|?]*" ;
+    OP_FIRST = "[!\#\%\^&\*\-\+/\\<>\|?]"
+    OPERATOR = "{OP_FIRST}[=:{OP_FIRST}]*" ;
     ID = "[A-Za-z_][A-Za-z0-9]*" ; (* excluding any literals in non-terminal rules *)
 
     IDENTIFIER = {ID}
