@@ -73,102 +73,11 @@ Ides also supports 32-bit and 64-bit floating point types. Like integers, the si
 Other built-in types include:
 *   `bool` - a boolean type.
 
-Note that there is no `const` keyword, and that Ides makes no attempt at ensuring [const correctness](http://en.wikipedia.org/wiki/Const-correctness). When using pointers, it is the responsibility of the developer to prevent writing to read-only memory.
-
 ### Struct Types ###
 Struct types are defined, as in C, using the `struct` keyword. Struct types can be allocated either as stack data or as heap data using the `new` keyword: `new MyStruct`. Structs may only contain public data members, and may not contain methods. Structs may not inherit or be inherited.
 
-#### Anonymous Structs (tuples) ####
-Ides exposes the C concept of an anonymous struct in the form of a tuple. Tuple types are specified with a comma-separated list of types. For example:
-
-    type1, type2, ..., typen
-
-This can be used to return multiple values from a function:
-
-    def bool, int32 QueryResource() { ... }
-
-This hypothetical `QueryResource()` function is able to return a `bool` success flag, as well as an `int32` data.
-
-To create a new tuple, the syntax is similar. This `QueryResource()` function may have a return statement that looks like:
-
-    return true, val;
-
-Tupes are indexed through a sequence of member variables following the format `_#`. For example, the caller of our `QueryResource()` function can index the tuple:
-
-    var result = QueryResource();    // result is of type (bool, int32)
-    if (result._1) {                 // result._1 is of type bool
-        PerformOperation(result._2); // result._2 is of type int32
-    }                                // Further members could be addressed with result._3, result._4 etc.
-
-1-tuples may be specified by including a trailing comma: `val,`
-
-In case of ambiguity, parentheses can be added around the tuple definition. For example, the expression `SomeFunction(a, b, (c, d))` would evaluate to a call to `SomeFunction` with three arguments: `a`, `b`, and the tuple `(c, d)`.
-
-Ides adopts its tuple syntax from [Python](http://wiki.python.org/moin/TupleSyntax).
-
-### Array Types ###
-Arrays are fixed-size blocks of memory containing a sequence of elements. Ides arrays, like C arrays, are internally a simple block of memory with a sequence of homogeneous elements. However, when an array is created in Ides, the compiler automatically adds certain metadata and runtime checks to protect against [buffer overflows](http://en.wikipedia.org/wiki/Buffer_overflow). The consequence of these runtime checks are an additional 8 bytes of memory, and a single branch instruction during array reads and writes.
-
-#### Creating Arrays ####
-##### Value Sequence #####
-Arrays can be created from a fixed sequence of values:
-
-    var x = [1, 2, 3]; // Creates an array of three int32
-
-##### Buffer Size #####
-Arrays can also be created with a length:
-
-    var x: int32[512]; // Array of 512 int32
-
-##### Array Length #####
-Arrays can be queried for their length:
-
-    x.length; // returns a uint64 describing the array's length.
-
-##### Accessing values #####
-Writing to and reading from arrays is straightforward:
-
-    var x = [1, 2, 3];
-    x[0] = someValue; // Write someValue into array position 0
-    someValue = x[0]; // Read from array position 0
-    someValue = x[4]; // Exception thrown! Array out of bounds.
-
-##### Compatibility with C Arrays #####
-It is easy to get a raw pointer to the data held in an array:
-
-    var x = [1, 2, 3];
-    var ptr = x as int32*; // Returns a C pointer to the first element of the array.
-
 ### Pointer Types ###
 Ides also supports pointer types. Ides pointers work in the same way as they do in C. The syntax for a pointer type to, for example, an `int32` adopts C syntax: `int32*`. It is valid to create pointers to built-in types, struct types or other pointer types. Pointers to class types are not supported.
-
-### Class Types ###
-Like structs, classes are allocated using the `new` keyword: `new MyClass()`. Classes may inherit from exactly one other class type. If a class definition doesn't explicitly specify a parent class, then it will inherit from the builtin class `Object`.
-
-#### Class Objects ####
-Class objects are data structures that are automatically generated to represent the static information about a given class type. Class objects contain methods for reflecting over objects, as well as all static data defined as part of that class.
-
-A object's class object can be retrieved with the member `o.class`. 
-
-### References ###
-The result of a `new` expression on a class type is called a Reference. Note that these are not related to references in C++, but instead are closer to references in languages like C# or Java. References will perform automatic memory management of objects through the use of reference counting. For example:
-
-    if (condition) {
-        var x = new SomeObject();
-        x.PerformAction();
-    } // x is out of scope. Refcount is decremented, and the object is immediately destroyed.
-
-**Note**: While reference counting will help with memory management, it is not a direct substitute for garbage collection. Unreachable circular references will not be deleted, and will effectively leak memory.
-
-#### Nullable References ####
-Reference types by default can not be null. For example, the following code is illegal:
-
-    var x: SomeObject = null; // cannot assign null to object of type SomeObject
-
-To support the concept of a nullable type, a question mark (`?`) can be appended to the type name to indicate that the reference may be null:
-
-    var x: SomeObject? = null; // valid. x is a nullable SomeType.
-
 
 Literals
 --------
