@@ -40,14 +40,14 @@ permalink: grammar.html
 
     expr = infix_expr ;
     infix_expr = prefix_expr { operator prefix_expr } ;
-    prefix_expr = [ operator ] postfix_expr
+    prefix_expr = { operator } postfix_expr
 
-    postfix_expr = primary_expr [ '(' expr_list ')'      (* value arguments *)
+    postfix_expr = primary_expr { '(' expr_list ')'      (* value arguments *)
                                 | '[' expr_list ']'      (* type arguments *)
                                 | '{' compound_expr '}'  (* block expression *)
                                 | '.' identifier
                                 | "..."
-                                ] ;
+                                } ;
 
     primary_expr = constant
                  | IDENTIFIER
